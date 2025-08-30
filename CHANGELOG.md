@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## \[1.0.0] – Full Release
+## \[1.0.1] – Full Release
 
 **Release Date:** 2025-08-29
 
