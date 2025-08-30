@@ -170,7 +170,7 @@ function buildMenu() {
         },
         { type: "separator" },
         {
-          label: "Version 1.0.0",
+          label: "Version " + app.getVersion(),
           enabled: false,
           // accelerator: 'CmdOrCtrl+I'
         }
