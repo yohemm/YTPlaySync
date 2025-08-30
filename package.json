@@ -1,6 +1,6 @@
 {
   "name": "yt-play-sync",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Software for downloading fast music from YouTube playlists with synchronization.",
   "main": "main.js",
   "scripts": {
