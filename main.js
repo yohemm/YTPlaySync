@@ -154,18 +154,18 @@ function buildMenu() {
     {
       label: "About Us", submenu: [
         {
-          label: "Doc (GitHub)",
-          click() { require('electron').shell.openExternal('https://github.com/yohemm/yohemm') },
+          label: "Documentation (GitHub)",
+          click() { require('electron').shell.openExternal('https://github.com/yohemm/YTPlaySync/blob/master/DOC.md') },
           accelerator: 'CmdOrCtrl+D'
         },
         {
           label: "Contribut (GitHub)",
-          click() { require('electron').shell.openExternal('https://github.com/yohemm/yohemm') },
+          click() { require('electron').shell.openExternal('https://github.com/yohemm/YTPlaySync') },
           accelerator: 'CmdOrCtrl+Shift+C'
         },
         {
           label: "Forum (GitHub)",
-          click() { require('electron').shell.openExternal('https://github.com/yohemm/yohemm') },
+          click() { require('electron').shell.openExternal('https://github.com/yohemm/YTPlaySync/discussions') },
           accelerator: 'CmdOrCtrl+F'
         },
         { type: "separator" },
@@ -180,7 +180,7 @@ function buildMenu() {
   return Menu.buildFromTemplate(template);
 }
 
-// Menu.setApplicationMenu(buildMenu());
+Menu.setApplicationMenu(buildMenu());
 
 ipcMain.handle("download-playlist", async (event, url) => {
   try {

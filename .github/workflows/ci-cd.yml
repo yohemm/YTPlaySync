@@ -1,0 +1,80 @@
+# name: Continous Intergration And Continous Deployment
+
+# # dist automatique impossible car depencances en local 
+
+# on:
+#   push:
+#   pull_request:
+#   workflow_dispatch:
+
+# jobs:
+#   #### CI Check up and build artifact
+#   ci-and-build-artifact:
+#     name: 'Install, Lint, TypeCheck and Testing Application, then build.'
+#     runs-on: ubuntu-latest
+#     steps:
+#       # Recup les fichiers de travaille
+#       - uses: actions/checkout@v4
+
+#       # utilise node
+#       - name: Use Node.js  22
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 22
+#         # execute des commandes
+#       - name: Clean install NPM
+#         run: npm ci --legacy-peer-deps
+
+#       - name: Install Dependencies
+#         run: npm install --legacy-peer-deps
+
+#       # - name: Syntaxe and Lint Verification
+#       #   run: npm run lint
+
+#       # - name: Check Type
+#       #   run: npm run typecheck
+
+#       # - name: Jest Test for react
+#       #   run: npm run test:ci
+
+#       - name: Build App
+#         run: npm run dist
+
+#       - uses: actions/upload-artifact@v4
+#         with:
+#           name: build
+#           path: build/
+
+#   # Release For Auto Versionning
+#   release:
+#     name: Create Release
+#     runs-on: ubuntu-latest
+#     needs: ci-and-build-artifact
+#     if: ${{ ((github.event_name == 'push' || github.event_name == 'pull_request') && github.ref_name == 'master' && success()) || github.event_name == 'workflow_dispatch' }}
+#     permissions:
+#       contents: write # to be able to publish a GitHub release
+#       issues: write # to be able to comment on released issues
+#       pull-requests: write # to be able to comment on released pull requests
+#       id-token: write # to enable use of OIDC for npm provenance
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+
+#       - name: Use Node.js  22
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 22
+
+#       - name: Clean install NPM
+#         run: npm ci
+
+#       - name: Build
+#         run: npm run build
+
+#       - name: Verify the integruty of signatures for installed dependencies
+#         run: npm audit signatures
+
+#       - name: Execute semantic release
+#         run: npx semantic-release
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

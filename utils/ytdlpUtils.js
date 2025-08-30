@@ -5,7 +5,7 @@ const { verifyPath } = require("./fileUtils");
 const { app } = require("electron");
 const isDev = !app.isPackaged;
 const userData = app.getPath("userData");
-const basePath = isDev ? __dirname : process.resourcesPath;
+const basePath = isDev ? __dirname.substring(0, __dirname.lastIndexOf('/')) : process.resourcesPath;
 
 const ytdlpPath = path.join(basePath, "dependances", "yt-dlp.exe");
 
